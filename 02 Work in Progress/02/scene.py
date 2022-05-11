@@ -16,15 +16,14 @@ class argandunitcircle(Scene):
         #DOT 1
         #in order to make dot1 a variable point
         #we need to include x and y valuetrackers
-        x= ValueTracker(0)
-        y= ValueTracker(1)
+        tracker = ComplexValueTracker(0+1j)
         d1 = Dot(plane.n2p(x + y*1j), color = YELLOW)
         label1 = MathTex("i").next_to(d1, UR, 0.1)
 
 
         #movable DOT 1 (update it's position)
 
-        d1.add_updater(lambda z: z.set_x(x.get_value()).set_y(y.get_value()))
+        d1.add_updater(lambda z: z.move_to(tracker.points))
 
       
         
@@ -37,11 +36,20 @@ class argandunitcircle(Scene):
 
         self.add(origin, d1, label1, line1)
 
-        #moving 
+        #rotating by pi/2
 
-        self.play(x.animate.set_value(-1))
-        self.play(y.animate.set_value(0))
-        self.wait()
+        self.play(tracker.animate.set_value(tracker.get_value() * 1j))
+        self.wait(2)
+
+        #rotating by pi/2
+
+        self.play(tracker.animate.set_value(tracker.get_value() * 1j))
+        self.wait(2)
+
+        #rotating by pi/2
+
+        self.play(tracker.animate.set_value(tracker.get_value() * 1j))
+        self.wait(2)
 
 
 
