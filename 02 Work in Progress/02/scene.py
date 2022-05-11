@@ -1,3 +1,4 @@
+from asyncio.windows_events import NULL
 from manim import *
 import numpy as np
 import math
@@ -10,7 +11,7 @@ class argandunitcircle(MovingCameraScene):
 
         #COMPLEX PLANE
         plane = ComplexPlane().add_coordinates()
-        self.play(Create(plane, runtime = 3))
+        self.play(Create(plane, run_time = 2, lag_ratio=0.1))
         self.wait()
         
         # ORIGIN
@@ -59,32 +60,56 @@ class argandunitcircle(MovingCameraScene):
         self.play(Wiggle(line1))
         self.wait()
 
-        #rotating by pi/2
+        #rotating by FIRST pi/2
 
         self.play(Unwrite(title1))
         title2 = MathTex(r"i^2").shift(UP + LEFT)
         self.play(Write(title2))
-        self.play(tracker.animate.set_value(tracker.get_value() * 1j))        
+        tracker.set_value(tracker.get_value() * 1j)
+        self.play(
+            Rotating(
+                d1,
+                radians = PI/2,
+                about_point=NULL,
+                run_time = 1
+            )
+        )
         self.wait()
         self.play(Wiggle(line1))
         self.wait(2)
 
-        #rotating by pi/2
+        #rotating by SECOND pi/2
 
         self.play(Unwrite(title2))
         title3 = MathTex(r"i^3").shift(UP + LEFT)
         self.play(Write(title3))
-        self.play(tracker.animate.set_value(tracker.get_value() * 1j))
+        tracker.set_value(tracker.get_value() * 1j)
+        self.play(
+            Rotating(
+                d1,
+                radians = PI/2,
+                about_point=NULL,
+                run_time = 1
+            )
+        )
         self.wait()
         self.play(Wiggle(line1))
         self.wait(2)
 
-        #rotating by pi/2
+        #rotating by THIRD pi/2
 
         self.play(Unwrite(title3))
         title4 = MathTex(r"i^4").shift(UP + LEFT)
         self.play(Write(title4))
-        self.play(tracker.animate.set_value(tracker.get_value() * 1j))
+        tracker.set_value(tracker.get_value() * 1j)
+        self.play(
+            Rotating(
+                d1,
+                radians = PI/2,
+                about_point=NULL,
+                run_time = 1
+            )
+        )
         self.wait(2)
 
 
