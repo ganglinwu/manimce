@@ -18,23 +18,27 @@ class argandunitcircle(Scene):
         #we need to include x and y valuetrackers
         tracker = ComplexValueTracker(0+1j)
         d1 = Dot(plane.n2p(0 + 1j), color = YELLOW)
-        label1 = MathTex("i").next_to(d1, UR, 0.1)
+
+
 
 
         #movable DOT 1 (update it's position)
 
         d1.add_updater(lambda z: z.move_to(tracker.points))
-
+        
       
         
         # LINE
         line1 = Line(start = origin, end = d1, color = YELLOW)
 
         # movable LINE(update it's positions)
-        line1.add_updater(lambda z: z.become(Line(origin.get_center(), d1.get_center())))
+        line1.add_updater(lambda z: z.become(Line(origin.get_center(), d1.get_center(), color = YELLOW)))
 
 
-        self.add(origin, d1, label1, line1)
+        self.add(origin, d1, line1)
+        self.wait()
+        self.play(Wiggle(line1))
+        self.wait()
 
         #rotating by pi/2
 
