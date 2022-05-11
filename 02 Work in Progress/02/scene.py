@@ -17,7 +17,7 @@ class argandunitcircle(Scene):
         #in order to make dot1 a variable point
         #we need to include x and y valuetrackers
         tracker = ComplexValueTracker(0+1j)
-        d1 = Dot(plane.n2p(x + y*1j), color = YELLOW)
+        d1 = Dot(plane.n2p(0 + 1j), color = YELLOW)
         label1 = MathTex("i").next_to(d1, UR, 0.1)
 
 
