@@ -1,7 +1,5 @@
-from asyncio.windows_events import NULL
 from manim import *
-import numpy as np
-import math
+
 
 class argandunitcircle(MovingCameraScene):
     def construct(self):
@@ -29,7 +27,7 @@ class argandunitcircle(MovingCameraScene):
 
         #movable DOT 1 (update it's position)
 
-        d1.add_updater(lambda z: z.move_to(tracker.points))
+        # d1.add_updater(lambda z: z.move_to(tracker.points))
         
       
         
@@ -65,15 +63,16 @@ class argandunitcircle(MovingCameraScene):
         self.play(Unwrite(title1))
         title2 = MathTex(r"i^2").shift(UP + LEFT)
         self.play(Write(title2))
-        tracker.set_value(tracker.get_value() * 1j)
+        tracker.set_value(-1 + 0j)
         self.play(
             Rotating(
                 d1,
                 radians = PI/2,
-                about_point=NULL,
+                about_point=ORIGIN,
                 run_time = 1
             )
         )
+        self.update_mobjects(0)
         self.wait()
         self.play(Wiggle(line1))
         self.wait(2)
@@ -83,15 +82,16 @@ class argandunitcircle(MovingCameraScene):
         self.play(Unwrite(title2))
         title3 = MathTex(r"i^3").shift(UP + LEFT)
         self.play(Write(title3))
-        tracker.set_value(tracker.get_value() * 1j)
+        tracker.set_value(0 - 1j)
         self.play(
             Rotating(
                 d1,
                 radians = PI/2,
-                about_point=NULL,
+                about_point=ORIGIN,
                 run_time = 1
             )
         )
+        self.update_mobjects(0)
         self.wait()
         self.play(Wiggle(line1))
         self.wait(2)
@@ -101,17 +101,14 @@ class argandunitcircle(MovingCameraScene):
         self.play(Unwrite(title3))
         title4 = MathTex(r"i^4").shift(UP + LEFT)
         self.play(Write(title4))
-        tracker.set_value(tracker.get_value() * 1j)
+        tracker.set_value(1 + 0j)
         self.play(
             Rotating(
                 d1,
                 radians = PI/2,
-                about_point=NULL,
+                about_point=ORIGIN,
                 run_time = 1
             )
         )
+        self.update_mobjects(0)
         self.wait(2)
-
-
-
-
