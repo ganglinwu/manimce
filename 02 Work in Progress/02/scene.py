@@ -75,7 +75,7 @@ class argandunitcircle(MovingCameraScene):
         self.update_mobjects(0)
         self.wait()
         self.play(Wiggle(line1))
-        self.wait(2)
+        self.wait()
 
         #rotating by SECOND pi/2
 
@@ -94,7 +94,7 @@ class argandunitcircle(MovingCameraScene):
         self.update_mobjects(0)
         self.wait()
         self.play(Wiggle(line1))
-        self.wait(2)
+        self.wait()
 
         #rotating by THIRD pi/2
 
@@ -111,4 +111,35 @@ class argandunitcircle(MovingCameraScene):
             )
         )
         self.update_mobjects(0)
-        self.wait(2)
+        self.wait()
+
+        #let's use a for loop to generate more rotations
+        #let n be the number of additional rotations
+
+        n=16 
+
+        self.play(Unwrite(title4))
+        for i in range(n):
+            if i <=4:
+                k = 1/2
+            else:
+                k = 1/i
+            a = str(i + 5)
+            titlex = MathTex(r"i^{"+a+r"}").shift(UP + LEFT) #for Latex to recognise double digit exponents
+            self.play(Write(titlex, run_time = 1*k))
+            tracker.set_value((0+0j)**((i+1)%4))
+            self.play(
+                Rotating(
+                    d1, 
+                    radians = PI/2, 
+                    about_point = ORIGIN,
+                    run_time = 1*k
+                )
+            )
+            self.update_mobjects(0)
+            self.wait(k)
+            if i == n:
+                self.wait()
+                continue
+            else:
+                self.play(Unwrite(titlex, run_time=1*k))
