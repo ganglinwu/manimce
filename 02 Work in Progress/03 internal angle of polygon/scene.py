@@ -29,4 +29,9 @@ def polygon(n):
         first_vertex_ang = (PI/2 - 0.5*ref_ang)
     else:
         first_vertex_ang = PI/2
+        coord =[]
+    for i in range(n):
+        coord.append((math.cos(first_vertex_ang+n*ref_ang), math.sin(first_vertex_ang+n*ref_ang))
+    
+        
 
